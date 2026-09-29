@@ -44,11 +44,9 @@ by cell using the '# %%' markers), or top to bottom as a single script.
 # when running cell-by-cell in an interactive console or notebook,
 # which is a common way to work through a lab.
 
-
-LAB_FOLDER = r"\Users\ncachanosky\OneDrive\Research\GitHub\ECON-5371-lab\lab_2"
+LAB_FOLDER = "/Users/intheclouds/Desktop/Github/ECON LAB"
 
 import os
-
 os.chdir(LAB_FOLDER)
 
 # Step 3: Import the installed packages.
@@ -89,7 +87,9 @@ pd.set_option('display.precision', 2)
 
 # %% 1. Load and Visualize the Data
 
-df = pd.read_csv("widget_sales.csv", parse_dates=["date"])
+df = pd.read_csv("widget_sales.csv")
+df["date"] = pd.to_datetime(df["date"], format="%m/%d/%y")
+
 series = df.set_index("date")["widget_sales_index"]
 series.index.freq = "MS"
 
